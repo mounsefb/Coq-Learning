@@ -1,0 +1,4 @@
+{
+    "vscoq.goals.diff.mode": "off",
+    "makefile.configureOnOpen": false
+}
