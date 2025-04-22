@@ -6,9 +6,9 @@
 (** Before getting started on this chapter, we need to import
     all of our definitions from the previous chapter: *)
 
-From LF Require Export Basics.
-
-(** For this [Require] command to work, Coq needs to be able to
+    From LF Require Export Basics.
+    
+    (** For this [Require] command to work, Coq needs to be able to
     find a compiled version of the previous chapter ([Basics.v]).
     This compiled version, called [Basics.vo], is analogous to the
     [.class] files compiled from [.java] source files and the [.o]

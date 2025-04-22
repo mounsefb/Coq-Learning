@@ -1,4 +1,5 @@
 {
     "vscoq.goals.diff.mode": "off",
-    "makefile.configureOnOpen": false
+    "makefile.configureOnOpen": false,
+    "coqtop.binPath": "/usr/bin/"
 }

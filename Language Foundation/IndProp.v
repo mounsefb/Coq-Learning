@@ -2368,8 +2368,10 @@ Proof.
   (* FILL IN HERE Admitted. *)
     * simpl. unfold not. intro. apply H.
     * simpl. unfold not. intro. 
-      ** rewrite H in Hcount. simpl in Hcount. destruct (n=?n) in Hcount. discriminate.
+      ** Abort. 
+      (* rewrite H in Hcount. simpl in Hcount. destruct (n=?n) in Hcount. discriminate.
        *** simpl in Hcount. apply IHl' in Hcount. unfold not in Hcount. apply Hcount.
+        *)
 
 
 
