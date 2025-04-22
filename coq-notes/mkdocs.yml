@@ -1,4 +1,22 @@
 site_name: Coq SF Notes
+
+theme:
+  name: readthedocs
+
 nav:
   - Home: index.md
+  - LF:
+      - Basics: LF/basics.md
+      - Induction: LF/induction.md
+      - Lists: LF/lists.md
+      - Poly: LF/poly.md
+      - Tactics: LF/tactics.md
+      - Logic: LF/logic.md
+      - IndProp: LF/indprop.md
+      - Maps: LF/maps.md
+      - Imp: LF/imp.md
+  - PLF:
+      - Program equivalence: PLF/program_equivalence.md
+      - Small-step: PLF/small_step.md
   - About: about.md
+
