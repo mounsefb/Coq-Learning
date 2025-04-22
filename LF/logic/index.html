@@ -208,21 +208,21 @@
 </ul>
 <h2 id="examples">Examples</h2>
 <h3 id="conjunction-example">Conjunction Example</h3>
-<pre><code class="language-coq">Theorem and_example : forall P Q : Prop, P /\ Q -&gt; Q /\ P.
+<pre><code>Theorem and_example : forall P Q : Prop, P /\ Q -&gt; Q /\ P.
 Proof.
     intros P Q [HP HQ].
     split; assumption.
 Qed.
 </code></pre>
 <h3 id="disjunction-example">Disjunction Example</h3>
-<pre><code class="language-coq">Theorem or_example : forall P Q : Prop, P -&gt; P \/ Q.
+<pre><code>Theorem or_example : forall P Q : Prop, P -&gt; P \/ Q.
 Proof.
     intros P Q HP.
     left. assumption.
 Qed.
 </code></pre>
 <h3 id="negation-example">Negation Example</h3>
-<pre><code class="language-coq">Theorem not_example : forall P : Prop, ~P -&gt; (P -&gt; False).
+<pre><code>Theorem not_example : forall P : Prop, ~P -&gt; (P -&gt; False).
 Proof.
     intros P HNP HP.
     apply HNP. assumption.

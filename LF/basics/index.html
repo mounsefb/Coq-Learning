@@ -63,7 +63,19 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#6-pattern-matching">6. Pattern Matching</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#7-proofs-by-induction">7. Proofs by Induction</a>
+    <li class="toctree-l3"><a class="reference internal" href="#7-fixpoint-functions">7. Fixpoint Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#content-list">Content List :</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#useful-inductive-types">Useful inductive Types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#introduced-functions">Introduced Functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#introduced-notations">Introduced Notations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#proven-theorems">Proven Theorems</a>
     </li>
         </ul>
     </li>
@@ -132,21 +144,22 @@
 <h3 id="1-defining-functions-and-values">1. <strong>Defining Functions and Values</strong></h3>
 <ul>
 <li>Functions are defined using the <code>Definition</code> keyword.</li>
-<li>Example:
-    <code>coq
-    Definition plus_two (n : nat) : nat := n + 2.</code></li>
+<li>Example:</li>
 </ul>
+<pre><code>    Definition plus_two (n : nat) : nat := n + 2.
+</code></pre>
 <h3 id="2-booleans">2. <strong>Booleans</strong></h3>
 <ul>
 <li>Coq provides a <code>bool</code> type with two values: <code>true</code> and <code>false</code>.</li>
-<li>Boolean functions can be defined using pattern matching:
-    <code>coq
-    Definition negb (b : bool) : bool :=
+<li>Boolean functions can be defined using pattern matching:</li>
+</ul>
+<pre><code>    Definition negb (b : bool) : bool :=
         match b with
         | true =&gt; false
         | false =&gt; true
-        end.</code></li>
-</ul>
+        end.
+</code></pre>
+<p>Pattern matching can be defined in this case as : b either match true or false.</p>
 <h3 id="3-numbers">3. <strong>Numbers</strong></h3>
 <ul>
 <li>Coq includes a <code>nat</code> type for natural numbers.</li>
@@ -155,60 +168,127 @@
 <li><code>S</code> for the successor function (e.g., <code>S O</code> is 1, <code>S (S O)</code> is 2).</li>
 </ul>
 </li>
-<li>Example of addition:
-    <code>coq
-    Fixpoint add (n m : nat) : nat :=
+<li>Example of addition:</li>
+</ul>
+<pre><code>    Fixpoint add (n m : nat) : nat :=
         match n with
         | O =&gt; m
         | S n' =&gt; S (add n' m)
-        end.</code></li>
-</ul>
+        end.
+</code></pre>
 <h3 id="4-proofs-by-simplification">4. <strong>Proofs by Simplification</strong></h3>
 <ul>
 <li>Proofs can be done interactively using tactics like <code>simpl</code> and <code>reflexivity</code>.</li>
-<li>Example:
-    <code>coq
-    Theorem plus_O_n : forall n : nat, 0 + n = n.
+<li>Example:</li>
+</ul>
+<pre><code>    Theorem plus_O_n : forall k : nat, 0 + k = k.
     Proof.
         simpl. reflexivity.
-    Qed.</code></li>
-</ul>
+    Qed.
+</code></pre>
+<p>In this case, simpl tactic will simplify 0 + k based on the construction of add. i.e add 0 k, n match O so the function returns k. simpl tactic can simplify this operation itself.
+Then when two operands are equal, it means we proved the theorem. Reflexivity tactic puts an end to the proof.  </p>
 <h3 id="5-inductive-types">5. <strong>Inductive Types</strong></h3>
 <ul>
 <li>Custom types can be defined using <code>Inductive</code>.</li>
-<li>Example: Defining a <code>day</code> type:
-    <code>coq
-    Inductive day : Type :=
-        | monday | tuesday | wednesday | thursday | friday | saturday | sunday.</code></li>
+<li>Example: Defining a <code>day</code> type:</li>
 </ul>
+<pre><code>    Inductive day : Type :=
+        | monday | tuesday | wednesday | thursday | friday | saturday | sunday.
+</code></pre>
+<p>day is a new data type, and any variable of type day can have one of the values: monday, tuesday, wednesday, etc.</p>
 <h3 id="6-pattern-matching">6. <strong>Pattern Matching</strong></h3>
 <ul>
 <li>Used to destructure data types.</li>
-<li>Example:
-    <code>coq
-    Definition is_weekend (d : day) : bool :=
+<li>Example:</li>
+</ul>
+<pre><code>    Definition is_weekend (d : day) : bool :=
         match d with
         | saturday | sunday =&gt; true
         | _ =&gt; false
-        end.</code></li>
-</ul>
-<h3 id="7-proofs-by-induction">7. <strong>Proofs by Induction</strong></h3>
+        end.
+</code></pre>
+<h3 id="7-fixpoint-functions">7. <strong>Fixpoint Functions</strong></h3>
 <ul>
-<li>Induction is used for proving properties about recursive structures.</li>
-<li>Example:
-    <code>coq
-    Theorem add_0_r : forall n : nat, n + 0 = n.
-    Proof.
-        induction n as [| n' IHn'].
-        - reflexivity.
-        - simpl. rewrite IHn'. reflexivity.
-    Qed.</code></li>
+<li>Recursive functions, needs to explicitly call back the function</li>
+<li>Example :</li>
 </ul>
+<pre><code>    Fixpoint plus (n : nat) (m : nat) : nat :=
+    match n with
+    | O =&gt; m
+    | S n' =&gt; S (plus n' m)
+    end.
+</code></pre>
 <hr />
+<h2 id="content-list">Content List :</h2>
+<h3 id="useful-inductive-types">Useful inductive Types</h3>
+<pre><code>Inductive bool : Type :=
+  | true
+  | false.
+</code></pre>
+<pre><code>Inductive nat : Type :=
+  | O
+  | S (n : nat).
+</code></pre>
+<pre><code>Inductive bin : Type :=
+  | Z
+  | B0 (n : bin)
+  | B1 (n : bin).
+</code></pre>
+<h3 id="introduced-functions">Introduced Functions</h3>
+<h3 id="introduced-notations">Introduced Notations</h3>
+<ul>
+<li>Notation "x + y" := (plus x y)
+                       (at level 50, left associativity)
+                       : nat_scope.</li>
+<li>Notation "x - y" := (minus x y)
+                       (at level 50, left associativity)
+                       : nat_scope.</li>
+<li>Notation "x * y" := (mult x y)
+                       (at level 40, left associativity)
+                       : nat_scope.</li>
+<li>Notation "x =? y" := (eqb x y) (at level 70) : nat_scope.</li>
+<li>Notation "x &lt;=? y" := (leb x y) (at level 70) : nat_scope.</li>
+<li>Notation "x &lt;? y" := (ltb x y) (at level 70) : nat_scope.</li>
+<li>Notation "x !&amp; y" := (nandb x y) (at level 40, left associativity).</li>
+<li>Notation "x &amp;&amp; y" := (andb x y).</li>
+<li>Notation "x || y" := (orb x y).</li>
+</ul>
+<h3 id="proven-theorems">Proven Theorems</h3>
+<ul>
+<li>zero_nbeq_plus_1 : forall n : nat,
+  0 =? (n + 1) = false.</li>
+<li>andb_commutative :
+  forall b c, andb b c = andb c b.</li>
+<li>identity_fn_applied_twice :
+  forall (f : bool -&gt; bool),
+  (forall (x : bool), f x = x) -&gt;
+  forall (b : bool), f (f b) = b.</li>
+<li>negation_fn_applied_twice :
+  forall (f : bool -&gt; bool),
+  (forall (x : bool), f x = negb x) -&gt;
+  forall (b : bool), f (f b) = b.</li>
+<li>andb_eq_orb :
+  forall (b c : bool),
+  (andb b c = orb b c) -&gt;
+  b = c.</li>
+<li>plus_O_n : forall n : nat, 0 + n = n.</li>
+<li>plus_1_l : forall n:nat, 1 + n = S n.</li>
+<li>mult_0_l : forall n:nat, 0 * n = 0.</li>
+<li>plus_id_example : forall n m:nat,
+  n = m -&gt;
+  n + n = m + m.</li>
+<li>mult_n_0_m_0 : forall p q : nat,
+  (p * 0) + (q * 0) = 0.</li>
+<li>mult_n_1 : forall p : nat,
+  p * 1 = p.</li>
+<li>plus_1_neq_0 : forall n : nat,
+  (n + 1) =? 0 = false.</li>
+</ul>
 <h2 id="summary">Summary</h2>
 <p>The <code>Basics.v</code> file introduces:
 - Core data types (<code>bool</code>, <code>nat</code>, custom types).
-- Function definitions and pattern matching.
+- Function definitions, recursive functions and pattern matching.
 - Proof techniques like simplification and induction.</p>
 <p>These concepts form the foundation for programming and proving in Coq.</p>
 <p>For more details, refer to the <em>Software Foundations</em> series.</p>

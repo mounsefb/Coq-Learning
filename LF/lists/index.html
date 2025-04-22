@@ -124,37 +124,34 @@
 <h2 id="1-introduction-to-lists">1. Introduction to Lists</h2>
 <ul>
 <li><strong>Definition</strong>: A list is a sequence of elements of the same type.</li>
-<li><strong>Syntax</strong>:
-    <code>coq
-    Inductive list (X : Type) : Type :=
+<li><strong>Syntax</strong>:</li>
+</ul>
+<pre><code>    Inductive list (X : Type) : Type :=
     | nil : list X
-    | cons : X -&gt; list X -&gt; list X.</code><ul>
-<li><code>nil</code>: Represents an empty list.</li>
-<li><code>cons</code>: Constructs a list by adding an element to the front.</li>
-</ul>
-</li>
-</ul>
+    | cons : X -&gt; list X -&gt; list X.
+</code></pre>
+<pre><code>- `nil`: Represents an empty list.
+- `cons`: Constructs a list by adding an element to the front.
+</code></pre>
 <h2 id="2-basic-list-operations">2. Basic List Operations</h2>
 <ul>
-<li>
-<p><strong><code>length</code></strong>: Computes the number of elements in a list.
-    <code>coq
-    Fixpoint length {X : Type} (l : list X) : nat :=
+<li><strong><code>length</code></strong>: Computes the number of elements in a list.</li>
+</ul>
+<pre><code>    Fixpoint length {X : Type} (l : list X) : nat :=
         match l with
         | nil =&gt; 0
         | cons _ t =&gt; 1 + length t
-        end.</code></p>
-</li>
-<li>
-<p><strong><code>app</code> (append)</strong>: Concatenates two lists.
-    <code>coq
-    Fixpoint app {X : Type} (l1 l2 : list X) : list X :=
+        end.
+</code></pre>
+<ul>
+<li><strong><code>app</code> (append)</strong>: Concatenates two lists.</li>
+</ul>
+<pre><code>    Fixpoint app {X : Type} (l1 l2 : list X) : list X :=
         match l1 with
         | nil =&gt; l2
         | cons h t =&gt; cons h (app t l2)
-        end.</code></p>
-</li>
-</ul>
+        end.
+</code></pre>
 <h2 id="3-list-notation">3. List Notation</h2>
 <ul>
 <li><strong>Standard Notation</strong>:<ul>
@@ -166,22 +163,19 @@
 </ul>
 <h2 id="4-theorems-and-proofs">4. Theorems and Proofs</h2>
 <ul>
-<li>
-<p><strong>Associativity of <code>app</code></strong>:
-    <code>coq
-    Theorem app_assoc : forall X (l1 l2 l3 : list X),
-        app l1 (app l2 l3) = app (app l1 l2) l3.</code></p>
+<li><strong>Associativity of <code>app</code></strong>:</li>
+</ul>
+<pre><code>    Theorem app_assoc : forall X (l1 l2 l3 : list X),
+        app l1 (app l2 l3) = app (app l1 l2) l3.
+</code></pre>
+<pre><code>- Proof involves induction on `l1`.
+</code></pre>
 <ul>
-<li>Proof involves induction on <code>l1</code>.</li>
+<li><strong>Length of <code>app</code></strong>:</li>
 </ul>
-</li>
-<li>
-<p><strong>Length of <code>app</code></strong>:
-    <code>coq
-    Theorem app_length : forall X (l1 l2 : list X),
-        length (app l1 l2) = length l1 + length l2.</code></p>
-</li>
-</ul>
+<pre><code>    Theorem app_length : forall X (l1 l2 : list X),
+        length (app l1 l2) = length l1 + length l2.
+</code></pre>
 <h2 id="5-polymorphism">5. Polymorphism</h2>
 <ul>
 <li>Lists in Coq are polymorphic, allowing elements of any type:<ul>
@@ -191,35 +185,33 @@
 </ul>
 <h2 id="6-higher-order-functions">6. Higher-Order Functions</h2>
 <ul>
-<li>
-<p><strong><code>map</code></strong>: Applies a function to each element of a list.
-    <code>coq
-    Fixpoint map {X Y : Type} (f : X -&gt; Y) (l : list X) : list Y :=
+<li><strong><code>map</code></strong>: Applies a function to each element of a list.</li>
+</ul>
+<pre><code>    Fixpoint map {X Y : Type} (f : X -&gt; Y) (l : list X) : list Y :=
         match l with
         | nil =&gt; nil
         | cons h t =&gt; cons (f h) (map f t)
-        end.</code></p>
-</li>
-<li>
-<p><strong><code>filter</code></strong>: Filters elements of a list based on a predicate.
-    <code>coq
-    Fixpoint filter {X : Type} (test : X -&gt; bool) (l : list X) : list X :=
+        end.
+</code></pre>
+<ul>
+<li><strong><code>filter</code></strong>: Filters elements of a list based on a predicate.</li>
+</ul>
+<pre><code>    Fixpoint filter {X : Type} (test : X -&gt; bool) (l : list X) : list X :=
         match l with
         | nil =&gt; nil
         | cons h t =&gt; if test h then cons h (filter test t) else filter test t
-        end.</code></p>
-</li>
-</ul>
+        end.
+</code></pre>
 <h2 id="7-list-membership">7. List Membership</h2>
 <ul>
-<li><strong><code>In</code></strong>: Checks if an element exists in a list.
-    <code>coq
-    Fixpoint In {X : Type} (x : X) (l : list X) : Prop :=
+<li><strong><code>In</code></strong>: Checks if an element exists in a list.</li>
+</ul>
+<pre><code>    Fixpoint In {X : Type} (x : X) (l : list X) : Prop :=
         match l with
         | nil =&gt; False
         | cons h t =&gt; h = x \/ In x t
-        end.</code></li>
-</ul>
+        end.
+</code></pre>
 <h2 id="8-exercises">8. Exercises</h2>
 <ul>
 <li>Practice exercises in <code>lists.v</code> include:<ul>

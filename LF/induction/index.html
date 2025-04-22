@@ -134,7 +134,7 @@
 <h2 id="inductive-definitions">Inductive Definitions</h2>
 <h3 id="natural-numbers">Natural Numbers</h3>
 <p>The natural numbers (<code>nat</code>) are defined inductively in <code>induction.v</code>:</p>
-<pre><code class="language-coq">Inductive nat : Type :=
+<pre><code>Inductive nat : Type :=
 | O : nat
 | S : nat -&gt; nat.
 </code></pre>
@@ -144,7 +144,7 @@
 </ul>
 <h3 id="lists">Lists</h3>
 <p>Lists are another example of an inductive type:</p>
-<pre><code class="language-coq">Inductive list (X : Type) : Type :=
+<pre><code>Inductive list (X : Type) : Type :=
 | nil : list X
 | cons : X -&gt; list X -&gt; list X.
 </code></pre>
@@ -159,7 +159,7 @@
 2. <strong>Inductive Step</strong>: Assume <code>P</code> holds for a smaller instance and prove it for the next constructor.</p>
 <h3 id="example-addition-is-associative">Example: Addition is Associative</h3>
 <p>The <code>induction.v</code> file demonstrates proofs like the associativity of addition:</p>
-<pre><code class="language-coq">Theorem add_assoc : forall n m p : nat,
+<pre><code>Theorem add_assoc : forall n m p : nat,
     n + (m + p) = (n + m) + p.
 Proof.
     intros n m p.

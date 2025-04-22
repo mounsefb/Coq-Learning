@@ -140,7 +140,7 @@
 <h2 id="inductive-propositions">Inductive Propositions</h2>
 <p>Inductive propositions are used to define logical properties and relations in Coq. They are similar to inductive types but represent logical statements.</p>
 <h3 id="example-even-numbers">Example: Even Numbers</h3>
-<pre><code class="language-coq">Inductive ev : nat -&gt; Prop :=
+<pre><code>Inductive ev : nat -&gt; Prop :=
 | ev_0 : ev 0
 | ev_SS : forall n, ev n -&gt; ev (S (S n)).
 </code></pre>
@@ -153,7 +153,7 @@
 - <strong>Induction</strong>: To handle recursive structures.
 - <strong>Inversion</strong>: To analyze cases based on constructors.</p>
 <h4 id="example-proof">Example Proof</h4>
-<pre><code class="language-coq">Theorem ev_double : forall n, ev (double n).
+<pre><code>Theorem ev_double : forall n, ev (double n).
 Proof.
     induction n.
     - apply ev_0.
@@ -166,18 +166,18 @@ Qed.
 - <strong>Disjunction (<code>\/</code>)</strong>: Defined using multiple constructors.
 - <strong>Existential Quantification (<code>exists</code>)</strong>: Defined using a constructor with a dependent type.</p>
 <h3 id="example-conjunction">Example: Conjunction</h3>
-<pre><code class="language-coq">Inductive and (P Q : Prop) : Prop :=
+<pre><code>Inductive and (P Q : Prop) : Prop :=
 | conj : P -&gt; Q -&gt; and P Q.
 </code></pre>
 <h3 id="example-disjunction">Example: Disjunction</h3>
-<pre><code class="language-coq">Inductive or (P Q : Prop) : Prop :=
+<pre><code>Inductive or (P Q : Prop) : Prop :=
 | or_introl : P -&gt; or P Q
 | or_intror : Q -&gt; or P Q.
 </code></pre>
 <h2 id="relations">Relations</h2>
 <p>Inductive propositions are often used to define relations between elements.</p>
 <h3 id="example-less-than-or-equal">Example: Less Than or Equal</h3>
-<pre><code class="language-coq">Inductive le : nat -&gt; nat -&gt; Prop :=
+<pre><code>Inductive le : nat -&gt; nat -&gt; Prop :=
 | le_n : forall n, le n n
 | le_S : forall n m, le n m -&gt; le n (S m).
 </code></pre>
@@ -191,7 +191,7 @@ Qed.
 <li><strong>Inversion</strong>: Extracts information from hypotheses involving inductive propositions.</li>
 </ul>
 <h3 id="example-inversion">Example: Inversion</h3>
-<pre><code class="language-coq">Theorem ev_inversion : forall n, ev n -&gt; n = 0 \/ exists n', n = S (S n') /\ ev n'.
+<pre><code>Theorem ev_inversion : forall n, ev n -&gt; n = 0 \/ exists n', n = S (S n') /\ ev n'.
 Proof.
     intros n H. inversion H.
     - left. reflexivity.

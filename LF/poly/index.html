@@ -123,55 +123,57 @@
 <h3 id="polymorphic-lists">Polymorphic Lists</h3>
 <ul>
 <li>Coq supports polymorphic data types, such as <code>list</code>, which can hold elements of any type.</li>
-<li>Example definition:
-    <code>coq
-    Inductive list (X : Type) : Type :=
+<li>Example definition:</li>
+</ul>
+<pre><code>    Inductive list (X : Type) : Type :=
     | nil : list X
-    | cons : X -&gt; list X -&gt; list X.</code></li>
+    | cons : X -&gt; list X -&gt; list X.
+</code></pre>
+<ul>
 <li><code>X</code> is a type parameter, making <code>list</code> polymorphic.</li>
 </ul>
 <h3 id="polymorphic-functions">Polymorphic Functions</h3>
 <ul>
 <li>Functions can also be polymorphic, operating on any type.</li>
-<li>Example: <code>length</code> function for lists:
-    <code>coq
-    Fixpoint length {X : Type} (l : list X) : nat :=
+<li>Example: <code>length</code> function for lists:</li>
+</ul>
+<pre><code>    Fixpoint length {X : Type} (l : list X) : nat :=
         match l with
         | nil =&gt; 0
         | cons _ t =&gt; 1 + length t
-        end.</code></li>
-</ul>
+        end.
+</code></pre>
 <h2 id="higher-order-functions">Higher-Order Functions</h2>
 <ul>
 <li>Functions that take other functions as arguments or return functions as results.</li>
-<li>Example: <code>map</code> function applies a function to each element of a list:
-    <code>coq
-    Fixpoint map {X Y : Type} (f : X -&gt; Y) (l : list X) : list Y :=
+<li>Example: <code>map</code> function applies a function to each element of a list:</li>
+</ul>
+<pre><code>    Fixpoint map {X Y : Type} (f : X -&gt; Y) (l : list X) : list Y :=
         match l with
         | nil =&gt; nil
         | cons h t =&gt; cons (f h) (map f t)
-        end.</code></li>
-</ul>
+        end.
+</code></pre>
 <h2 id="type-inference-and-annotations">Type Inference and Annotations</h2>
 <ul>
 <li>Coq can often infer types, but explicit annotations can improve readability and debugging.</li>
-<li>Example:
-    <code>coq
-    Definition id {X : Type} (x : X) : X := x.</code></li>
+<li>Example:</li>
 </ul>
+<pre><code>    Definition id {X : Type} (x : X) : X := x.
+</code></pre>
 <h2 id="exercises-and-proofs">Exercises and Proofs</h2>
 <ul>
 <li><code>poly.v</code> includes exercises to practice reasoning about polymorphic functions and proving properties about them.</li>
-<li>Example proof: <code>map</code> preserves list length:
-    <code>coq
-    Theorem map_length : forall (X Y : Type) (f : X -&gt; Y) (l : list X),
+<li>Example proof: <code>map</code> preserves list length:</li>
+</ul>
+<pre><code>    Theorem map_length : forall (X Y : Type) (f : X -&gt; Y) (l : list X),
         length (map f l) = length l.
     Proof.
         intros X Y f l. induction l as [| h t IH].
         - reflexivity.
         - simpl. rewrite IH. reflexivity.
-    Qed.</code></li>
-</ul>
+    Qed.
+</code></pre>
 <h2 id="key-takeaways">Key Takeaways</h2>
 <ul>
 <li>Polymorphism allows for reusable and generic definitions.</li>
