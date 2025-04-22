@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tactics - Coq SF Notes</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tactics";
+        var mkdocs_page_input_path = "LF/tactics.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Coq SF Notes
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">LF</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../basics/">Basics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../induction/">Induction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lists/">Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poly/">Poly</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Tactics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-tactics">Basic Tactics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#intros">intros</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reflexivity">reflexivity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#apply">apply</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exact">exact</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#assumption">assumption</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#structural-tactics">Structural Tactics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#split">split</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#left-right">left / right</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#destruct">destruct</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#induction">induction</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simplification-tactics">Simplification Tactics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simpl">simpl</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rewrite">rewrite</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unfold">unfold</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fold">fold</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logical-tactics">Logical Tactics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#assert">assert</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exists">exists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inversion">inversion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#automation">Automation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#auto">auto</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eauto">eauto</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#repeat">repeat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#try">try</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#debugging">Debugging</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#info_auto">info_auto</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#idtac">idtac</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logic/">Logic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../indprop/">IndProp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../maps/">Maps</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../imp/">Imp</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PLF</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../PLF/program_equivalence/">Program equivalence</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../PLF/small_step/">Small-step</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Coq SF Notes</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">LF</li>
+      <li class="breadcrumb-item active">Tactics</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tactics-in-coq">Tactics in Coq</h1>
+<p>This document summarizes key concepts and tactics from the Software Foundations (SF) course, focusing on the <code>tactics.v</code> file.</p>
+<h2 id="basic-tactics">Basic Tactics</h2>
+<h3 id="intros"><code>intros</code></h3>
+<ul>
+<li>Moves hypotheses or variables from the goal into the context.</li>
+</ul>
+<h3 id="reflexivity"><code>reflexivity</code></h3>
+<ul>
+<li>Solves goals where both sides of the equation are identical.</li>
+</ul>
+<h3 id="apply"><code>apply</code></h3>
+<ul>
+<li>Uses a hypothesis, lemma, or theorem to prove the goal.</li>
+</ul>
+<h3 id="exact"><code>exact</code></h3>
+<ul>
+<li>Provides the exact term that matches the goal.</li>
+</ul>
+<h3 id="assumption"><code>assumption</code></h3>
+<ul>
+<li>Solves the goal if it matches a hypothesis in the context.</li>
+</ul>
+<h2 id="structural-tactics">Structural Tactics</h2>
+<h3 id="split"><code>split</code></h3>
+<ul>
+<li>Breaks conjunctions (<code>A /\ B</code>) into separate subgoals.</li>
+</ul>
+<h3 id="left-right"><code>left</code> / <code>right</code></h3>
+<ul>
+<li>Chooses a branch in a disjunction (<code>A \/ B</code>).</li>
+</ul>
+<h3 id="destruct"><code>destruct</code></h3>
+<ul>
+<li>Performs case analysis on a term.</li>
+</ul>
+<h3 id="induction"><code>induction</code></h3>
+<ul>
+<li>Applies induction on a variable, generating base and inductive cases.</li>
+</ul>
+<h2 id="simplification-tactics">Simplification Tactics</h2>
+<h3 id="simpl"><code>simpl</code></h3>
+<ul>
+<li>Simplifies computations in the goal.</li>
+</ul>
+<h3 id="rewrite"><code>rewrite</code></h3>
+<ul>
+<li>Replaces terms using equalities from hypotheses or lemmas.</li>
+</ul>
+<h3 id="unfold"><code>unfold</code></h3>
+<ul>
+<li>Expands a defined term in the goal.</li>
+</ul>
+<h3 id="fold"><code>fold</code></h3>
+<ul>
+<li>Collapses a term back into its defined form.</li>
+</ul>
+<h2 id="logical-tactics">Logical Tactics</h2>
+<h3 id="assert"><code>assert</code></h3>
+<ul>
+<li>Introduces an intermediate assertion to simplify proofs.</li>
+</ul>
+<h3 id="exists"><code>exists</code></h3>
+<ul>
+<li>Provides a witness to prove existential quantifiers (<code>exists x, P x</code>).</li>
+</ul>
+<h3 id="inversion"><code>inversion</code></h3>
+<ul>
+<li>Analyzes equalities to extract information from constructors.</li>
+</ul>
+<h2 id="automation">Automation</h2>
+<h3 id="auto"><code>auto</code></h3>
+<ul>
+<li>Attempts to solve goals using simple reasoning and existing hypotheses.</li>
+</ul>
+<h3 id="eauto"><code>eauto</code></h3>
+<ul>
+<li>Extends <code>auto</code> with additional search capabilities.</li>
+</ul>
+<h3 id="repeat"><code>repeat</code></h3>
+<ul>
+<li>Repeats a tactic until it fails.</li>
+</ul>
+<h3 id="try"><code>try</code></h3>
+<ul>
+<li>Attempts a tactic but does not fail if the tactic does.</li>
+</ul>
+<h2 id="debugging">Debugging</h2>
+<h3 id="info_auto"><code>info_auto</code></h3>
+<ul>
+<li>Displays the steps taken by <code>auto</code>.</li>
+</ul>
+<h3 id="idtac"><code>idtac</code></h3>
+<ul>
+<li>Prints custom messages for debugging.</li>
+</ul>
+<hr />
+<p>This summary provides a foundation for understanding Coq tactics. Refer to the <code>tactics.v</code> file for detailed examples and exercises.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../poly/" class="btn btn-neutral float-left" title="Poly"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../logic/" class="btn btn-neutral float-right" title="Logic">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../poly/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../logic/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
