@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>IndProp - Coq SF Notes</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IndProp";
+        var mkdocs_page_input_path = "LF/indprop.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Coq SF Notes
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">LF</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../basics/">Basics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../induction/">Induction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lists/">Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poly/">Poly</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tactics/">Tactics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logic/">Logic</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">IndProp</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#inductive-propositions">Inductive Propositions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-even-numbers">Example: Even Numbers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#proofs-with-inductive-propositions">Proofs with Inductive Propositions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-proof">Example Proof</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logical-connectives-and-quantifiers">Logical Connectives and Quantifiers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-conjunction">Example: Conjunction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-disjunction">Example: Disjunction</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relations">Relations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-less-than-or-equal">Example: Less Than or Equal</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#case-analysis-and-inversion">Case Analysis and Inversion</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-inversion">Example: Inversion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../maps/">Maps</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../imp/">Imp</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PLF</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../PLF/program_equivalence/">Program equivalence</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../PLF/small_step/">Small-step</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Coq SF Notes</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">LF</li>
+      <li class="breadcrumb-item active">IndProp</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="summary-of-concepts-from-indpropv">Summary of Concepts from <code>IndProp.v</code></h1>
+<p>This document summarizes key concepts from the <code>IndProp.v</code> chapter of the Software Foundations Coq course.</p>
+<h2 id="inductive-propositions">Inductive Propositions</h2>
+<p>Inductive propositions are used to define logical properties and relations in Coq. They are similar to inductive types but represent logical statements.</p>
+<h3 id="example-even-numbers">Example: Even Numbers</h3>
+<pre><code class="language-coq">Inductive ev : nat -&gt; Prop :=
+| ev_0 : ev 0
+| ev_SS : forall n, ev n -&gt; ev (S (S n)).
+</code></pre>
+<ul>
+<li><code>ev_0</code>: Base case, stating that <code>0</code> is even.</li>
+<li><code>ev_SS</code>: Inductive step, stating that if <code>n</code> is even, then <code>S (S n)</code> is also even.</li>
+</ul>
+<h3 id="proofs-with-inductive-propositions">Proofs with Inductive Propositions</h3>
+<p>Proofs involving inductive propositions often use:
+- <strong>Induction</strong>: To handle recursive structures.
+- <strong>Inversion</strong>: To analyze cases based on constructors.</p>
+<h4 id="example-proof">Example Proof</h4>
+<pre><code class="language-coq">Theorem ev_double : forall n, ev (double n).
+Proof.
+    induction n.
+    - apply ev_0.
+    - simpl. apply ev_SS. apply IHn.
+Qed.
+</code></pre>
+<h2 id="logical-connectives-and-quantifiers">Logical Connectives and Quantifiers</h2>
+<p>Inductive definitions can encode logical connectives:
+- <strong>Conjunction (<code>/\</code>)</strong>: Defined using a constructor with two arguments.
+- <strong>Disjunction (<code>\/</code>)</strong>: Defined using multiple constructors.
+- <strong>Existential Quantification (<code>exists</code>)</strong>: Defined using a constructor with a dependent type.</p>
+<h3 id="example-conjunction">Example: Conjunction</h3>
+<pre><code class="language-coq">Inductive and (P Q : Prop) : Prop :=
+| conj : P -&gt; Q -&gt; and P Q.
+</code></pre>
+<h3 id="example-disjunction">Example: Disjunction</h3>
+<pre><code class="language-coq">Inductive or (P Q : Prop) : Prop :=
+| or_introl : P -&gt; or P Q
+| or_intror : Q -&gt; or P Q.
+</code></pre>
+<h2 id="relations">Relations</h2>
+<p>Inductive propositions are often used to define relations between elements.</p>
+<h3 id="example-less-than-or-equal">Example: Less Than or Equal</h3>
+<pre><code class="language-coq">Inductive le : nat -&gt; nat -&gt; Prop :=
+| le_n : forall n, le n n
+| le_S : forall n m, le n m -&gt; le n (S m).
+</code></pre>
+<ul>
+<li><code>le_n</code>: Base case, <code>n &lt;= n</code>.</li>
+<li><code>le_S</code>: Inductive step, if <code>n &lt;= m</code>, then <code>n &lt;= S m</code>.</li>
+</ul>
+<h2 id="case-analysis-and-inversion">Case Analysis and Inversion</h2>
+<ul>
+<li><strong>Case Analysis</strong>: Used to reason about all possible forms of a proposition.</li>
+<li><strong>Inversion</strong>: Extracts information from hypotheses involving inductive propositions.</li>
+</ul>
+<h3 id="example-inversion">Example: Inversion</h3>
+<pre><code class="language-coq">Theorem ev_inversion : forall n, ev n -&gt; n = 0 \/ exists n', n = S (S n') /\ ev n'.
+Proof.
+    intros n H. inversion H.
+    - left. reflexivity.
+    - right. exists n0. split; assumption.
+Qed.
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>The <code>IndProp.v</code> chapter introduces powerful tools for reasoning about logical properties and relations in Coq. By defining propositions inductively, we can construct proofs that are both rigorous and expressive.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../logic/" class="btn btn-neutral float-left" title="Logic"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../maps/" class="btn btn-neutral float-right" title="Maps">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../logic/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../maps/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
