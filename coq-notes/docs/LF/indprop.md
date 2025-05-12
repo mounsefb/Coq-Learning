@@ -7,7 +7,7 @@ This document summarizes key concepts from the `IndProp.v` chapter of the Softwa
 Inductive propositions are used to define logical properties and relations in Coq. They are similar to inductive types but represent logical statements.
 
 ### Example: Even Numbers
-```coq
+```
 Inductive ev : nat -> Prop :=
 | ev_0 : ev 0
 | ev_SS : forall n, ev n -> ev (S (S n)).
@@ -22,7 +22,7 @@ Proofs involving inductive propositions often use:
 - **Inversion**: To analyze cases based on constructors.
 
 #### Example Proof
-```coq
+```
 Theorem ev_double : forall n, ev (double n).
 Proof.
     induction n.
@@ -39,13 +39,13 @@ Inductive definitions can encode logical connectives:
 - **Existential Quantification (`exists`)**: Defined using a constructor with a dependent type.
 
 ### Example: Conjunction
-```coq
+```
 Inductive and (P Q : Prop) : Prop :=
 | conj : P -> Q -> and P Q.
 ```
 
 ### Example: Disjunction
-```coq
+```
 Inductive or (P Q : Prop) : Prop :=
 | or_introl : P -> or P Q
 | or_intror : Q -> or P Q.
@@ -56,7 +56,7 @@ Inductive or (P Q : Prop) : Prop :=
 Inductive propositions are often used to define relations between elements.
 
 ### Example: Less Than or Equal
-```coq
+```
 Inductive le : nat -> nat -> Prop :=
 | le_n : forall n, le n n
 | le_S : forall n m, le n m -> le n (S m).
@@ -71,7 +71,7 @@ Inductive le : nat -> nat -> Prop :=
 - **Inversion**: Extracts information from hypotheses involving inductive propositions.
 
 ### Example: Inversion
-```coq
+```
 Theorem ev_inversion : forall n, ev n -> n = 0 \/ exists n', n = S (S n') /\ ev n'.
 Proof.
     intros n H. inversion H.

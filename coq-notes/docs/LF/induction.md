@@ -10,7 +10,7 @@ Induction is a fundamental proof technique used to reason about recursively defi
 
 ### Natural Numbers
 The natural numbers (`nat`) are defined inductively in `induction.v`:
-```coq
+```
 Inductive nat : Type :=
 | O : nat
 | S : nat -> nat.
@@ -20,7 +20,7 @@ Inductive nat : Type :=
 
 ### Lists
 Lists are another example of an inductive type:
-```coq
+```
 Inductive list (X : Type) : Type :=
 | nil : list X
 | cons : X -> list X -> list X.
@@ -37,7 +37,7 @@ To prove a property `P` for an inductive type:
 
 ### Example: Addition is Associative
 The `induction.v` file demonstrates proofs like the associativity of addition:
-```coq
+```
 Theorem add_assoc : forall n m p : nat,
     n + (m + p) = (n + m) + p.
 Proof.

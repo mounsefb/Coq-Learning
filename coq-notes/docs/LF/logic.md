@@ -62,7 +62,7 @@ This document summarizes key concepts from the `logic.v` file in the Software Fo
 ## Examples
 
 ### Conjunction Example
-```coq
+```
 Theorem and_example : forall P Q : Prop, P /\ Q -> Q /\ P.
 Proof.
     intros P Q [HP HQ].
@@ -71,7 +71,7 @@ Qed.
 ```
 
 ### Disjunction Example
-```coq
+```
 Theorem or_example : forall P Q : Prop, P -> P \/ Q.
 Proof.
     intros P Q HP.
@@ -80,7 +80,7 @@ Qed.
 ```
 
 ### Negation Example
-```coq
+```
 Theorem not_example : forall P : Prop, ~P -> (P -> False).
 Proof.
     intros P HNP HP.
